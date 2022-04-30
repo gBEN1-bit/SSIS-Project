@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/26/2022 2:06:37 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ADEGBOYEGAOLUWA"
+  DTS:CreatorName="FINTRAKSOFTWARE\Adegboyega.Oluwagbem"
+  DTS:DTSID="{B5CA44C5-C27E-4C19-B9A6-B61568CA9F40}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.180"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionGUID="{9FF959B5-04B3-4A4E-85AE-135C995B7DBB}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables />
+</DTS:Executable>

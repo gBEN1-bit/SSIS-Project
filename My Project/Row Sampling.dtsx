@@ -1,0 +1,879 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/28/2022 7:21:51 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ADEGBOYEGAOLUWA"
+  DTS:CreatorName="FINTRAKSOFTWARE\Adegboyega.Oluwagbem"
+  DTS:DTSID="{D904492B-19F3-4CDD-A191-62342D9D8A82}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.180"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Row Sampling"
+  DTS:PackageType="5"
+  DTS:VersionBuild="13"
+  DTS:VersionGUID="{78DA0323-94DA-42A7-AB2E-2A1D794F3035}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ADEGBOYEGAOLUWA\GBEN.DW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{2DB76639-EDB7-460C-A68B-A7A3B9381260}"
+      DTS:ObjectName="ADEGBOYEGAOLUWA\GBEN.DW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=ADEGBOYEGAOLUWA\GBEN;Initial Catalog=DW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{89F7E446-DCF7-453F-9D75-705C603C9EFA}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\Users\Adegboyega.Oluwagbem\Downloads\Series.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{7FF69F87-88F3-4E7D-AA12-D9D1B6C55CDF}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\Excel Source"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Excel Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Series$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Excel Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Series]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Series]"
+                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Series]"
+                      name="Series"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Winner]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Winner]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Winner]"
+                      name="Winner"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Start Date]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Start Date]"
+                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Start Date]"
+                      name="Start Date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Finish Date]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Finish Date]"
+                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Finish Date]"
+                      name="Finish Date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Gender]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Gender]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Gender]"
+                      name="Gender"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Series]"
+                      dataType="r8"
+                      name="Series" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Winner]"
+                      dataType="wstr"
+                      length="255"
+                      name="Winner" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Start Date]"
+                      dataType="date"
+                      name="Start Date" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Finish Date]"
+                      dataType="date"
+                      name="Finish Date" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Gender]"
+                      dataType="wstr"
+                      length="255"
+                      name="Gender" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Series]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Series]"
+                      name="Series" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Winner]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Winner]"
+                      name="Winner" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Start Date]"
+                      dataType="date"
+                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Start Date]"
+                      name="Start Date" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Finish Date]"
+                      dataType="date"
+                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Finish Date]"
+                      name="Finish Date" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Gender]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Gender]"
+                      name="Gender" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Row Sampling"
+              componentClassID="Microsoft.RowSampling"
+              contactInfo="Row Sampling;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Randomly samples a specific number of rows from an input data flow. For example, use it randomly select products to feature on your Web site."
+              name="Row Sampling">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of rows in the sample."
+                  expressionType="Notify"
+                  name="SamplingValue">3</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the seed for the random number generator."
+                  name="SamplingSeed">0</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Row Sampling.Inputs[Row Sampling Input 1]"
+                  name="Row Sampling Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Row Sampling.Inputs[Row Sampling Input 1].Columns[Series]"
+                      cachedDataType="r8"
+                      cachedName="Series"
+                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Series]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Row Sampling.Inputs[Row Sampling Input 1].Columns[Winner]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Winner"
+                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Winner]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Row Sampling.Inputs[Row Sampling Input 1].Columns[Start Date]"
+                      cachedDataType="date"
+                      cachedName="Start Date"
+                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Start Date]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Row Sampling.Inputs[Row Sampling Input 1].Columns[Finish Date]"
+                      cachedDataType="date"
+                      cachedName="Finish Date"
+                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Finish Date]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Row Sampling.Inputs[Row Sampling Input 1].Columns[Gender]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Gender"
+                      lineageId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Gender]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Row Sampling.Outputs[Selected Sample]"
+                  name="Selected Sample">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Output for rows in the sample"
+                      name="Selected">true</property>
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Row Sampling.Outputs[Selected Sample].Columns[Series]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Row Sampling.Outputs[Selected Sample].Columns[Series]"
+                      name="Series">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Input column lineage ID"
+                          name="InputColumnLineageID">#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Series]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Row Sampling.Outputs[Selected Sample].Columns[Winner]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Row Sampling.Outputs[Selected Sample].Columns[Winner]"
+                      name="Winner">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Input column lineage ID"
+                          name="InputColumnLineageID">#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Winner]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Row Sampling.Outputs[Selected Sample].Columns[Start Date]"
+                      dataType="date"
+                      lineageId="Package\Data Flow Task\Row Sampling.Outputs[Selected Sample].Columns[Start Date]"
+                      name="Start Date">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Input column lineage ID"
+                          name="InputColumnLineageID">#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Start Date]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Row Sampling.Outputs[Selected Sample].Columns[Finish Date]"
+                      dataType="date"
+                      lineageId="Package\Data Flow Task\Row Sampling.Outputs[Selected Sample].Columns[Finish Date]"
+                      name="Finish Date">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Input column lineage ID"
+                          name="InputColumnLineageID">#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Finish Date]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Row Sampling.Outputs[Selected Sample].Columns[Gender]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Row Sampling.Outputs[Selected Sample].Columns[Gender]"
+                      name="Gender">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Input column lineage ID"
+                          name="InputColumnLineageID">#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Gender]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Row Sampling.Outputs[Unselected Sample]"
+                  name="Unselected Sample">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Output for rows in the sample"
+                      name="Selected">false</property>
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Row Sampling.Outputs[Unselected Sample].Columns[Series]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Row Sampling.Outputs[Unselected Sample].Columns[Series]"
+                      name="Series">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Input column lineage ID"
+                          name="InputColumnLineageID">#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Series]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Row Sampling.Outputs[Unselected Sample].Columns[Winner]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Row Sampling.Outputs[Unselected Sample].Columns[Winner]"
+                      name="Winner">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Input column lineage ID"
+                          name="InputColumnLineageID">#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Winner]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Row Sampling.Outputs[Unselected Sample].Columns[Start Date]"
+                      dataType="date"
+                      lineageId="Package\Data Flow Task\Row Sampling.Outputs[Unselected Sample].Columns[Start Date]"
+                      name="Start Date">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Input column lineage ID"
+                          name="InputColumnLineageID">#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Start Date]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Row Sampling.Outputs[Unselected Sample].Columns[Finish Date]"
+                      dataType="date"
+                      lineageId="Package\Data Flow Task\Row Sampling.Outputs[Unselected Sample].Columns[Finish Date]"
+                      name="Finish Date">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Input column lineage ID"
+                          name="InputColumnLineageID">#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Finish Date]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Row Sampling.Outputs[Unselected Sample].Columns[Gender]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Row Sampling.Outputs[Unselected Sample].Columns[Gender]"
+                      name="Gender">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Input column lineage ID"
+                          name="InputColumnLineageID">#{Package\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Gender]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Selected Sample"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Selected Sample"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Selected Sample.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Selected Sample.Inputs[Union All Input 1].Columns[Series]"
+                      cachedDataType="r8"
+                      cachedName="Series"
+                      lineageId="Package\Data Flow Task\Row Sampling.Outputs[Selected Sample].Columns[Series]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Selected Sample.Outputs[Union All Output 1].Columns[Series]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Selected Sample.Inputs[Union All Input 1].Columns[Winner]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Winner"
+                      lineageId="Package\Data Flow Task\Row Sampling.Outputs[Selected Sample].Columns[Winner]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Selected Sample.Outputs[Union All Output 1].Columns[Winner]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Selected Sample.Inputs[Union All Input 1].Columns[Start Date]"
+                      cachedDataType="date"
+                      cachedName="Start Date"
+                      lineageId="Package\Data Flow Task\Row Sampling.Outputs[Selected Sample].Columns[Start Date]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Selected Sample.Outputs[Union All Output 1].Columns[Start Date]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Selected Sample.Inputs[Union All Input 1].Columns[Finish Date]"
+                      cachedDataType="date"
+                      cachedName="Finish Date"
+                      lineageId="Package\Data Flow Task\Row Sampling.Outputs[Selected Sample].Columns[Finish Date]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Selected Sample.Outputs[Union All Output 1].Columns[Finish Date]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Selected Sample.Inputs[Union All Input 1].Columns[Gender]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Gender"
+                      lineageId="Package\Data Flow Task\Row Sampling.Outputs[Selected Sample].Columns[Gender]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Selected Sample.Outputs[Union All Output 1].Columns[Gender]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Data Flow Task\Selected Sample.Inputs[Union All Input 2]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Selected Sample.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Selected Sample.Outputs[Union All Output 1].Columns[Series]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Selected Sample.Outputs[Union All Output 1].Columns[Series]"
+                      name="Series" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Selected Sample.Outputs[Union All Output 1].Columns[Winner]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Selected Sample.Outputs[Union All Output 1].Columns[Winner]"
+                      name="Winner" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Selected Sample.Outputs[Union All Output 1].Columns[Start Date]"
+                      dataType="date"
+                      lineageId="Package\Data Flow Task\Selected Sample.Outputs[Union All Output 1].Columns[Start Date]"
+                      name="Start Date" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Selected Sample.Outputs[Union All Output 1].Columns[Finish Date]"
+                      dataType="date"
+                      lineageId="Package\Data Flow Task\Selected Sample.Outputs[Union All Output 1].Columns[Finish Date]"
+                      name="Finish Date" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Selected Sample.Outputs[Union All Output 1].Columns[Gender]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Selected Sample.Outputs[Union All Output 1].Columns[Gender]"
+                      name="Gender" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Unselected Sample"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Unselected Sample"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Unselected Sample.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Unselected Sample.Inputs[Union All Input 1].Columns[Series]"
+                      cachedDataType="r8"
+                      cachedName="Series"
+                      lineageId="Package\Data Flow Task\Row Sampling.Outputs[Unselected Sample].Columns[Series]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Unselected Sample.Outputs[Union All Output 1].Columns[Series]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Unselected Sample.Inputs[Union All Input 1].Columns[Winner]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Winner"
+                      lineageId="Package\Data Flow Task\Row Sampling.Outputs[Unselected Sample].Columns[Winner]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Unselected Sample.Outputs[Union All Output 1].Columns[Winner]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Unselected Sample.Inputs[Union All Input 1].Columns[Start Date]"
+                      cachedDataType="date"
+                      cachedName="Start Date"
+                      lineageId="Package\Data Flow Task\Row Sampling.Outputs[Unselected Sample].Columns[Start Date]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Unselected Sample.Outputs[Union All Output 1].Columns[Start Date]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Unselected Sample.Inputs[Union All Input 1].Columns[Finish Date]"
+                      cachedDataType="date"
+                      cachedName="Finish Date"
+                      lineageId="Package\Data Flow Task\Row Sampling.Outputs[Unselected Sample].Columns[Finish Date]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Unselected Sample.Outputs[Union All Output 1].Columns[Finish Date]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Unselected Sample.Inputs[Union All Input 1].Columns[Gender]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Gender"
+                      lineageId="Package\Data Flow Task\Row Sampling.Outputs[Unselected Sample].Columns[Gender]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Data Flow Task\Unselected Sample.Outputs[Union All Output 1].Columns[Gender]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Data Flow Task\Unselected Sample.Inputs[Union All Input 2]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Unselected Sample.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Unselected Sample.Outputs[Union All Output 1].Columns[Series]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Unselected Sample.Outputs[Union All Output 1].Columns[Series]"
+                      name="Series" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Unselected Sample.Outputs[Union All Output 1].Columns[Winner]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Unselected Sample.Outputs[Union All Output 1].Columns[Winner]"
+                      name="Winner" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Unselected Sample.Outputs[Union All Output 1].Columns[Start Date]"
+                      dataType="date"
+                      lineageId="Package\Data Flow Task\Unselected Sample.Outputs[Union All Output 1].Columns[Start Date]"
+                      name="Start Date" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Unselected Sample.Outputs[Union All Output 1].Columns[Finish Date]"
+                      dataType="date"
+                      lineageId="Package\Data Flow Task\Unselected Sample.Outputs[Union All Output 1].Columns[Finish Date]"
+                      name="Finish Date" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Unselected Sample.Outputs[Union All Output 1].Columns[Gender]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Unselected Sample.Outputs[Union All Output 1].Columns[Gender]"
+                      name="Gender" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[Excel Source Output]"
+              endId="Package\Data Flow Task\Row Sampling.Inputs[Row Sampling Input 1]"
+              name="Excel Source Output"
+              startId="Package\Data Flow Task\Excel Source.Outputs[Excel Source Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Selected Sample]"
+              endId="Package\Data Flow Task\Selected Sample.Inputs[Union All Input 1]"
+              name="Selected Sample"
+              startId="Package\Data Flow Task\Row Sampling.Outputs[Selected Sample]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Unselected Sample]"
+              endId="Package\Data Flow Task\Unselected Sample.Inputs[Union All Input 1]"
+              name="Unselected Sample"
+              startId="Package\Data Flow Task\Row Sampling.Outputs[Unselected Sample]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\Data Flow Task"
+          TopLeft="188.571431782781,169.764708263239" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="138.4,41.6"
+          Id="Package\Data Flow Task\Excel Source"
+          TopLeft="309.285719552819,38.2352946538826" />
+        <NodeLayout
+          Size="144.8,41.6"
+          Id="Package\Data Flow Task\Row Sampling"
+          TopLeft="309.285719552819,104.764707351638" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Excel Source Output]"
+          TopLeft="380.085719552819,79.8352946538826">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,24.9294126977558"
+              Start="0,0"
+              End="0,17.4294126977558">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.4294126977558" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="156,41.6"
+          Id="Package\Data Flow Task\Selected Sample"
+          TopLeft="196.42857477373,188.88235559018" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Selected Sample]"
+          TopLeft="381.685719552819,146.364707351638">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-107.257144779089,42.5176482385418"
+              Start="0,0"
+              End="-107.257144779089,35.0176482385418">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.2588241192709" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.2588241192709"
+                    Point2="0,21.2588241192709"
+                    Point3="-4,21.2588241192709" />
+                  <mssgle:LineSegment
+                    End="-103.257144779089,21.2588241192709" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-103.257144779089,21.2588241192709"
+                    Point2="-107.257144779089,21.2588241192709"
+                    Point3="-107.257144779089,25.2588241192709" />
+                  <mssgle:LineSegment
+                    End="-107.257144779089,35.0176482385418" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-99.2735723895443,26.2588241192709,91.29,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="167.2,41.6"
+          Id="Package\Data Flow Task\Unselected Sample"
+          TopLeft="397.14286390616,193.470590948646" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Unselected Sample]"
+          TopLeft="404.485719552819,146.364707351638">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="76.2571443533409,47.1058835970077"
+              Start="0,0"
+              End="76.2571443533409,39.6058835970077">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.1512444787835" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.1512444787835"
+                    Point2="0,19.1512444787835"
+                    Point3="4,19.1512444787835" />
+                  <mssgle:LineSegment
+                    End="72.2571443533409,19.1512444787835" />
+                  <mssgle:CubicBezierSegment
+                    Point1="72.2571443533409,19.1512444787835"
+                    Point2="76.2571443533409,19.1512444787835"
+                    Point3="76.2571443533409,23.1512444787835" />
+                  <mssgle:LineSegment
+                    End="76.2571443533409,39.6058835970077" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-13.0314278233295,24.1512444787835,102.32,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
